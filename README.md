@@ -1,4 +1,4 @@
-# Portfolio Backtester
+# Portfolio Backtest Suite
 
 The Portfolio Backtest Suite is a collection of tools for backtesting stock and ETF portfolios using historical data. Similar to [Portfolio Visualizer](https://www.portfoliovisualizer.com/backtest-portfolio) but this will eventually be a fully open source, programmatic, and customizable platform.
 
