@@ -22,23 +22,26 @@ def lookup_price_history(ticker):
 
 # Collect Data and Add to Cache
 cache = {}
-tickers = ['vfinx', 'vustx']
 
-for ticker in tickers:
-    lookup_price_history(ticker)
-
-exit(0)
 
 # Create new portfolios
-
 portfolio = {'vfinx': 70, 'vustx': 30}
 
-earliest_start_date = 2024
+for ticker in portfolio.keys():
+    lookup_price_history(ticker)
+
+latest_start_date = 0
 
 for ticker in portfolio.keys():
-    start_date = min(list(cache))
+    start_date = min(list(cache[ticker].keys()))
+    print(start_date)
+    earliest_start_date = max(latest_start_date, start_date)
 
+print(latest_start_date)
 
+if latest_start_date == 0:
+    print("Error with start dates")
+    exit(0)
 
 # Visualization
 
