@@ -1,3 +1,6 @@
+import yfinance as yf
+
+
 # Converts year string YYYY-MM-DD to year decimal YYYY.nn
 def date_str_to_year_decimal(s):
     if len(s) != 10:
@@ -18,7 +21,7 @@ def get_price(prices_dict, year_decimal):
     return None
 
 
-def lookup_price_history(ticker):
+def lookup_price_history(cache, ticker):
     tickerData = yf.Ticker(ticker)
     tickerDf = tickerData.history(period='max')
 

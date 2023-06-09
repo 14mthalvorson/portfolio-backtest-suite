@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import yfinance as yf
 from utilities import *
 
 
@@ -11,7 +10,7 @@ portfolio = {'vfinx': 70, 'vustx': 30}
 rebalancing_frequency = 0.25
 
 for ticker in portfolio.keys():
-    lookup_price_history(ticker)
+    lookup_price_history(cache, ticker)
 
 latest_start_date = 0
 
@@ -58,8 +57,9 @@ print('CAGR: {:.2%}'.format(cagr - 1))
 x = list(results.keys())
 y = list(results.values())
 
-# Create scatter plot with smaller dots
-plt.scatter(x, y, s=1, label="Portfolio 1")
+plt.plot(x, y)
+plt.scatter(x, y, s=3, label="Portfolio 1")
+
 
 # Set y-axis to log scale
 plt.yscale('log')
