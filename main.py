@@ -9,7 +9,7 @@ from time_utilities import *
 
 cache = {}
 
-tickers = ['spy', 'qqq']
+tickers = ['spy', 'qqq', 'amzn', 'meta']
 
 for ticker in tickers:
     tickerData = yf.Ticker(ticker)
@@ -24,6 +24,8 @@ for ticker in tickers:
         ticker_prices[year_decimal] = price
 
     cache[ticker] = ticker_prices
+
+# Visualization
 
 for ticker in tickers:
     x = list(cache[ticker].keys())
