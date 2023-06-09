@@ -5,13 +5,7 @@ import yfinance as yf
 from time_utilities import *
 
 
-# Collect Data and Add to Cache
-
-cache = {}
-
-tickers = ['spy', 'qqq', 'amzn', 'meta']
-
-for ticker in tickers:
+def lookup_price_history(ticker):
     tickerData = yf.Ticker(ticker)
     tickerDf = tickerData.history(period='max')
 
@@ -24,6 +18,27 @@ for ticker in tickers:
         ticker_prices[year_decimal] = price
 
     cache[ticker] = ticker_prices
+
+
+# Collect Data and Add to Cache
+cache = {}
+tickers = ['vfinx', 'vustx']
+
+for ticker in tickers:
+    lookup_price_history(ticker)
+
+exit(0)
+
+# Create new portfolios
+
+portfolio = {'vfinx': 70, 'vustx': 30}
+
+earliest_start_date = 2024
+
+for ticker in portfolio.keys():
+    start_date = min(list(cache))
+
+
 
 # Visualization
 
