@@ -1,35 +1,32 @@
 import time
 import yfinance as yf
+from time_utilities import *
+import matplotlib.pyplot as plt
 
-# Define the ticker symbol
-tickerSymbol = 'QQQ'
 
-# Get data on this ticker
+cache = {}
+
+
+tickerSymbol = 'qqq'
+
 tickerData = yf.Ticker(tickerSymbol)
-
-# Get the historical prices for this ticker
 tickerDf = tickerData.history(period='max')
 
-# See your data
-print(tickerDf.to_dict().keys())
+close_prices = list(tickerDf.to_dict()['Close'].items())
+ticker_prices = {}
 
-closes = []
-
-print(len(tickerDf.to_dict()['Close']))
-
-print(list(tickerDf.to_dict()['Close'].keys())[0])
-
-date_time = str(list(tickerDf.to_dict()['Close'].keys())[0])[:10]
-pattern = '%Y-%m-%d'
-epoch = int(time.mktime(time.strptime(date_time, pattern)))
-print(epoch)
+for date, price in close_prices:
+    date_str = str(date)[:10]
+    print(date_str)
+    year_decimal = date_str_to_year_decimal(date_str)
+    ticker_prices[year_decimal] = price
 
 
-exit(0)
+print(ticker_prices)
 
-for day in tickerDf.to_dict()['Close']:
-    closes.append((day[0], day[1]))
+x = list(ticker_prices.keys())
+y = list(ticker_prices.values())
 
-print(closes[0])
+plt.scatter(x, y)
+plt.show()
 
-# closes.sort(key=lambda x: x[0])
