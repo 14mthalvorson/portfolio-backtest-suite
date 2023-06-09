@@ -81,3 +81,10 @@ def calculate_backtest_performance(cache, portfolio, settings):
     print('CAGR: {:.2%}'.format(cagr - 1))
 
     return results
+
+
+def clean_name(name):
+    for i in "{}:'":
+        name = name.replace(i, '')
+    name = name.replace(',', '%,') + '%'
+    return name

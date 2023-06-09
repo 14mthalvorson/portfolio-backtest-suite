@@ -7,15 +7,13 @@ cache = {}
 
 # Create new portfolios
 portfolios = [
-    {'vfinx': 100, 'vustx': 0},
-    {'vfinx': 90, 'vustx': 10},
-    {'vfinx': 80, 'vustx': 20},
-    {'vfinx': 70, 'vustx': 30}]
+    {'tqqq': 32, 'cure': 21, 'lbay': 5, 'vpu': 4, 'vdc': 3, 'v': 1, 'amzn': 1.5, 'coin': 0.5, 'kmlm': 4.5, 'dbmf': 4.5, 'tmf': 4, 'edv': 4, 'btal': 14, 'vixm': 1},
+    {'tqqq': 32, 'cure': 21, 'vpu': 6, 'vdc': 6, 'v': 1, 'amzn': 2, 'kmlm': 4.5, 'dbmf': 4.5, 'tmf': 4, 'edv': 4, 'btal': 14, 'vixm': 1}]
 
 settings = {'rebalancing_frequency': 0.25}
 
-for portfolio in portfolios:
-    name = str(portfolio)
+for i, portfolio in enumerate(portfolios):
+    name = "Portfolio " + str(i + 1) + ": " + clean_name(str(portfolio))
     results = calculate_backtest_performance(cache, portfolio, settings)
 
     # Visualization
@@ -23,7 +21,7 @@ for portfolio in portfolios:
     y = list(results.values())
 
     plt.plot(x, y)
-    plt.scatter(x, y, s=3, label="Portfolio {}".format(name))
+    plt.scatter(x, y, s=3, label=name)
 
 
 # Set y-axis to log scale
