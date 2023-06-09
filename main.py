@@ -7,6 +7,7 @@ cache = {}
 
 # Create new portfolios
 portfolio = {'vfinx': 70, 'vustx': 30}
+
 rebalancing_frequency = 0.25
 
 for ticker in portfolio.keys():
